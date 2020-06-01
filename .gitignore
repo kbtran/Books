@@ -4,3 +4,5 @@
 
 /Books.Api/.vs/Books.Api/v16
 /Books.Api/Books.Api/obj
+/Books.Api/Books.Api/bin/Debug/netcoreapp3.1/runtimes
+/Books.Api/Books.Api/bin/Debug/netcoreapp3.1
