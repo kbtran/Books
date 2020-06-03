@@ -1,3 +1,4 @@
+using AutoMapper;
 using Books.Api.Contexts;
 using Books.Api.Services;
 using Microsoft.AspNetCore.Builder;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace Books.Api
 {
@@ -38,6 +40,7 @@ namespace Books.Api
             services.AddDbContext<BooksContext>(options => options.UseSqlServer(connectionString));
 
             services.AddScoped<IBooksRepository, BooksRepository>();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,4 +1,5 @@
 ﻿using System;
+using Books.Api.Filters;
 using Books.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,6 +18,7 @@ namespace Books.Api.Controllers
         }
 
         [HttpGet]
+        [BooksResultFilter]
         public IActionResult GetBooks()
         {
             var bookEntities = _booksRepository.GetBooks();
