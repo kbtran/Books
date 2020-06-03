@@ -24,6 +24,11 @@ namespace Books.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc(options =>
+            {
+                options.EnableEndpointRouting = false;
+            });
+
             services.AddControllers();
 
             // register the DbContext on the container, getting the connection string from
@@ -45,14 +50,16 @@ namespace Books.Api
 
             app.UseHttpsRedirection();
 
-            app.UseRouting();
+            //app.UseRouting();
 
-            app.UseAuthorization();
+            //app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllers();
+            //});
+
+            app.UseMvc();
         }
     }
 }

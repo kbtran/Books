@@ -6,7 +6,7 @@ namespace Books.Api.Contexts
 {
     public class BooksContext : DbContext
     {
-        public System.Data.Entity.DbSet<Book> Books { get; set; }
+        public DbSet<Book> Books { get; set; }
 
         public BooksContext(DbContextOptions<BooksContext> options)
             : base(options)
