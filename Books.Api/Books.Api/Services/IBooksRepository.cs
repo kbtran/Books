@@ -7,7 +7,7 @@ namespace Books.Api.Services
 {
     public interface IBooksRepository
     {
-        // IEnumerable<Book> GetBooks();
+        IEnumerable<Book> GetBooks();
 
         // Book GetBook(Guid id);
 

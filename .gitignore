@@ -2,7 +2,7 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/Books.Api/.vs/Books.Api/v16
+/Books.Api/.vs/Books.Api/
 /Books.Api/Books.Api/obj
 /Books.Api/Books.Api/bin/Debug/netcoreapp3.1/runtimes
 /Books.Api/Books.Api/bin/Debug/netcoreapp3.1
