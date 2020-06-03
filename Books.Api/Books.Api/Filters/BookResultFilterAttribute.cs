@@ -8,13 +8,6 @@ namespace Books.Api.Filters
 {
     public class BookResultFilterAttribute : ResultFilterAttribute
     {
-        private readonly IMapper _mapper;
-
-        public BookResultFilterAttribute(IMapper mapper)
-        {
-            mapper = _mapper;
-        }
-
         public override async Task OnResultExecutionAsync(ResultExecutingContext context,
             ResultExecutionDelegate next)
         {

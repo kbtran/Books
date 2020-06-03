@@ -27,7 +27,7 @@ namespace Books.Api.Controllers
         }
 
         [HttpGet]
-        [BooksResultFilter]
+        [BookResultFilter]
         [Route("{id}")]
         public async Task<IActionResult> GetBook(Guid id)
         {
