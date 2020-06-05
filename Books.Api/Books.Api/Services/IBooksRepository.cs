@@ -23,6 +23,6 @@ namespace Books.Api.Services
         Task<bool> SaveChangesAsync();
 
         Task<BookCover> GetBookCoverAsync(string coverId);
-      //  Task<IEnumerable<BookCover>> GetBookCoversAsync(Guid bookId);
+        Task<IEnumerable<BookCover>> GetBookCoversAsync(Guid bookId);
     }
 }
