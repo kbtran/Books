@@ -18,7 +18,7 @@ namespace Books.Api.Controllers
         }
 
         [HttpGet]
-        [BooksResultFilter]
+       // [BooksResultFilter]
         public IActionResult GetBooks()
         {
             var bookEntities = _booksRepository.GetBooks();

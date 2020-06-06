@@ -8,21 +8,22 @@ namespace Books.Api.Services
 {
     public interface IBooksRepository
     {
-        IEnumerable<Book> GetBooks();
+        IEnumerable<Entities.Book> GetBooks();
 
-        // Book GetBook(Guid id);
+        //Entities.Book GetBook(Guid id);
 
-        Task<IEnumerable<Book>> GetBooksAsync();
+        Task<IEnumerable<Entities.Book>> GetBooksAsync();
 
         Task<IEnumerable<Entities.Book>> GetBooksAsync(IEnumerable<Guid> bookIds);
 
-        Task<Book> GetBookAsync(Guid id);
+        Task<BookCover> GetBookCoverAsync(string coverId);
+
+        Task<IEnumerable<BookCover>> GetBookCoversAsync(Guid bookId);
+
+        Task<Entities.Book> GetBookAsync(Guid id);
 
         void AddBook(Entities.Book bookToAdd);
 
         Task<bool> SaveChangesAsync();
-
-        Task<BookCover> GetBookCoverAsync(string coverId);
-        Task<IEnumerable<BookCover>> GetBookCoversAsync(Guid bookId);
     }
 }
