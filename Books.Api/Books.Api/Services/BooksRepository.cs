@@ -31,6 +31,9 @@ namespace Books.Api.Services
 
         public async Task<Book> GetBookAsync(Guid id)
         {
+            var pageCalculator = new Books.Legacy.ComplicatedPageCalculator();
+            var amountOfPage = pageCalculator.CalculateBookPages();
+
             return await _context.Books.Include(b => b.Author)
                 .FirstOrDefaultAsync(b => b.Id == id);
         }

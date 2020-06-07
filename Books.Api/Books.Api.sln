@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Books.Api", "Books.Api\Books.Api.csproj", "{ED65573F-0165-4A33-9982-7797D057E89D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D5A9FBDB-2244-4134-95DD-68385DFBF8D0} = {D5A9FBDB-2244-4134-95DD-68385DFBF8D0}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookCovers.API", "BookCovers.API\BookCovers.API.csproj", "{A685BC50-5A4B-433A-B96C-B3860F8725C1}"
 EndProject

@@ -10,3 +10,4 @@
 /Books.Api/BookCovers.API/bin/Debug/netcoreapp2.1
 /Books.Api/BookCovers.API/obj
 /Books.Api/Books.Legacy/obj
+/Books.Api/Books.Legacy/bin/Debug/netcoreapp2.0
