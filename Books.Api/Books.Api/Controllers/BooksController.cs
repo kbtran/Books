@@ -23,11 +23,20 @@ namespace Books.Api.Controllers
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
+        //[HttpGet]
+        //[BooksResultFilter]
+        //public async Task<IActionResult> GetBooks()
+        //{
+        //    var bookEntities = await _booksRepository.GetBooksAsync();
+        //    return Ok(bookEntities);
+        //}
+
+        // Pitfall #2 Blocking Async Code
         [HttpGet]
         [BooksResultFilter]
-        public async Task<IActionResult> GetBooks()
+        public IActionResult GetBooks()
         {
-            var bookEntities = await _booksRepository.GetBooksAsync();
+            var bookEntities =  _booksRepository.GetBooksAsync().Result;
             return Ok(bookEntities);
         }
 
