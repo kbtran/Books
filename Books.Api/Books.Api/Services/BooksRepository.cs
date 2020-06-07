@@ -35,24 +35,24 @@ namespace Books.Api.Services
             //var amountOfPage = pageCalculator.CalculateBookPages();
 
             // Pitfall #1: using Task.Run() on the server
-            _logger.LogInformation($"ThreadId when entering GetBookAsync: {System.Threading.Thread.CurrentThread.ManagedThreadId}");
-            var bookPages = await GetBookPages();
+            //_logger.LogInformation($"ThreadId when entering GetBookAsync: {System.Threading.Thread.CurrentThread.ManagedThreadId}");
+            //var bookPages = await GetBookPages();
 
             return await _context.Books.Include(b => b.Author)
                 .FirstOrDefaultAsync(b => b.Id == id);
         }
 
         // Pitfall #1: using Task.Run() on the server
-        private Task<int> GetBookPages()
-        {
-            return Task.Run(() =>
-            {
-                _logger.LogInformation($"ThreadId when calculating the amount of pages: {System.Threading.Thread.CurrentThread.ManagedThreadId}");
+        //private Task<int> GetBookPages()
+        //{
+        //    return Task.Run(() =>
+        //    {
+        //        _logger.LogInformation($"ThreadId when calculating the amount of pages: {System.Threading.Thread.CurrentThread.ManagedThreadId}");
 
-                var pageCalculator = new Books.Legacy.ComplicatedPageCalculator();
-                return pageCalculator.CalculateBookPages();
-            });
-        }
+        //        var pageCalculator = new Books.Legacy.ComplicatedPageCalculator();
+        //        return pageCalculator.CalculateBookPages();
+        //    });
+        //}
 
         public async Task<IEnumerable<Book>> GetBooksAsync()
         {
