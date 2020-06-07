@@ -98,22 +98,53 @@ namespace Books.Api.Services
                 $"http://localhost:52644/api/bookcovers/{bookId}-dummycover5"
             };
 
-            foreach (var bookCoverUrl in bookCoverUrls)
-            {
-                var response = await httpClient.GetAsync(bookCoverUrl);
+            //foreach (var bookCoverUrl in bookCoverUrls)
+            //{
+            //    var response = await httpClient.GetAsync(bookCoverUrl);
 
-                if (response.IsSuccessStatusCode)
-                {
-                    bookCovers.Add(JsonSerializer.Deserialize<BookCover>(
-                        await response.Content.ReadAsStringAsync(),
-                        new JsonSerializerOptions
-                        {
-                            PropertyNameCaseInsensitive = true,
-                        }));
-                }
+            //    if (response.IsSuccessStatusCode)
+            //    {
+            //        bookCovers.Add(JsonSerializer.Deserialize<BookCover>(
+            //            await response.Content.ReadAsStringAsync(),
+            //            new JsonSerializerOptions
+            //            {
+            //                PropertyNameCaseInsensitive = true,
+            //            }));
+            //    }
+            //}
+            //return bookCovers;
+
+            // create the tasks
+            var downloadBookCoverTasksQuery =
+                 from bookCoverUrl
+                 in bookCoverUrls
+                 select DownloadBookCoverAsync(httpClient, bookCoverUrl);
+
+            // start the tasks
+            var downloadBookCoverTasks = downloadBookCoverTasksQuery.ToList();
+
+            return await Task.WhenAll(downloadBookCoverTasks);
+            
+        }
+
+
+        private async Task<BookCover> DownloadBookCoverAsync(
+        HttpClient httpClient, string bookCoverUrl)
+        {
+            var response = await httpClient.GetAsync(bookCoverUrl);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var bookCover = JsonSerializer.Deserialize<BookCover>(
+                    await response.Content.ReadAsStringAsync(),
+                    new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true,
+                    });
+                return bookCover;
             }
 
-            return bookCovers;
+            return null;
         }
 
         public void Dispose()
@@ -134,5 +165,6 @@ namespace Books.Api.Services
 
             }
         }
+
     }
 }
