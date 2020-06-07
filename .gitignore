@@ -9,3 +9,4 @@
 /Books.Api/.vs/Books.Api/DesignTimeBuild
 /Books.Api/BookCovers.API/bin/Debug/netcoreapp2.1
 /Books.Api/BookCovers.API/obj
+/Books.Api/Books.Legacy/obj
