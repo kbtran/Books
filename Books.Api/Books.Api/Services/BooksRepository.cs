@@ -3,6 +3,7 @@ using Books.Api.Entities;
 using Books.Api.ExternalModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -76,7 +77,7 @@ namespace Books.Api.Services
 
             if (response.IsSuccessStatusCode)
             {
-                return JsonSerializer.Deserialize<BookCover>(
+                return System.Text.Json.JsonSerializer.Deserialize<BookCover>(
                     await response.Content.ReadAsStringAsync(),
                     new JsonSerializerOptions 
                     { 
@@ -98,7 +99,8 @@ namespace Books.Api.Services
             var bookCoverUrls = new[]
             {
                 $"http://localhost:52644/api/bookcovers/{bookId}-dummycover1",
-                $"http://localhost:52644/api/bookcovers/{bookId}-dummycover2?returnFault=true",
+             //   $"http://localhost:52644/api/bookcovers/{bookId}-dummycover2?returnFault=true",
+                $"http://localhost:52644/api/bookcovers/{bookId}-dummycover2",
                 $"http://localhost:52644/api/bookcovers/{bookId}-dummycover3",
                 $"http://localhost:52644/api/bookcovers/{bookId}-dummycover4",
                 $"http://localhost:52644/api/bookcovers/{bookId}-dummycover5"
@@ -148,25 +150,27 @@ namespace Books.Api.Services
                 throw;
             }
 
-
         }
 
 
         private async Task<BookCover> DownloadBookCoverAsync(
         HttpClient httpClient, string bookCoverUrl, CancellationToken cancellationToken)
         {
-            throw new Exception("Cannot download book cover, writer isn't finishing book fast enough.");
+            // throw new Exception("Cannot download book cover, writer isn't finishing book fast enough.");
 
             var response = await httpClient.GetAsync(bookCoverUrl, cancellationToken);
 
             if (response.IsSuccessStatusCode)
             {
-                var bookCover = JsonSerializer.Deserialize<BookCover>(
-                    await response.Content.ReadAsStringAsync(),
-                    new JsonSerializerOptions
-                    {
-                        PropertyNameCaseInsensitive = true,
-                    });
+                //var bookCover = JsonSerializer.Deserialize<BookCover>(
+                //    await response.Content.ReadAsStringAsync(),
+                //    new JsonSerializerOptions
+                //    {
+                //        PropertyNameCaseInsensitive = true,
+                //    });
+
+                var bookCover = JsonConvert.DeserializeObject<BookCover>(
+                    await response.Content.ReadAsStringAsync());
                 return bookCover;
             }
 
